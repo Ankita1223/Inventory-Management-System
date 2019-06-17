@@ -13,11 +13,11 @@
  	
  </head>
  <style>
-  body {background-color: slateblue;}
+  body {background-color: #F5F5F5;}
  </style>
 <body>
 
-<div class="jumbotron">
+<div class="jumbotron" style="background-color: #DB7093">
   <h1 class="display-4"><center>Inventory Management System </center></h1>
 
  </div>

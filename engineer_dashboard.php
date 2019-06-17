@@ -23,6 +23,10 @@ foreach($result as $row)
 	$user_type=$row['user_type'];
 
 }
+if ($user_type!='Engineer')
+{
+	exit("You are not an engineer");
+}
 
 ?>
 
@@ -37,17 +41,18 @@ foreach($result as $row)
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	<script type="text/javascript" src="./js/main.js"></script>
+ 	<script type="text/javascript" src="./main.js"></script>
  </head>
 <body>
 	<!-- Navbar -->
+
 	<?php include_once("./header.php"); ?>
 	<br/><br/>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
 				<div class="jumbotron">
-				    <h2>Welcome <?php echo $user_type; ?></h2>
+				    <h2>Welcome <?php echo $user_type; ?>!</h2>
 				    <div class="card mx-auto">
 				    <div class="card-body">
 				    <h4 class="card-title">Profile Info</h4>
@@ -69,7 +74,7 @@ foreach($result as $row)
 						      <div class="card-body">
 						        <h4 class="card-title">View Inventories</h4>
 						        <p class="card-text">Here you view various inventories and their status</p>
-						        <a href="#" class="btn btn-primary">View Inventories</a>
+						        <a href="view_inventories.php" class="btn btn-primary">View Inventories</a>
 						     </div>
 						    </div>
 						
