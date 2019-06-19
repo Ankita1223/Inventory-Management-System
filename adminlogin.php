@@ -1,5 +1,7 @@
 <?php
+
 include_once("./database/constants.php");
+
 ?>
 <!DOCTYPE html>
 <html>

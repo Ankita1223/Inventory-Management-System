@@ -20,7 +20,8 @@ $(document).ready(function(){
 			method : "POST",
 			data : {manageEmployee:1},
 			success : function(data){
-				$("#get_employee").html(data);		
+				$("#get_employee").html(data);
+						
 			}
 		})
 	}

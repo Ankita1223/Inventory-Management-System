@@ -21,6 +21,8 @@ include_once("./database/db.php");
 	<?php include_once("./header.php"); ?>
 	<br/><br/>
 	<div class="container">
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
 		<table class="table table-hover table-bordered">
 		    <thead class="thead-light">
 		      <tr>
@@ -46,7 +48,16 @@ include_once("./database/db.php");
 		  </table>
 	</div>
 
-
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#get_employee tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 	
 	
 </body>

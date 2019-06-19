@@ -29,9 +29,9 @@ $email = '';
 $user_type='';
 foreach($result as $row)
 {
-	$name = $row['name'];
+	$_SESSION["name"]=$name = $row['name'];
 	$email = $row['email_id'];
-	$user_type=$row['user_type'];
+	$_SESSION["user_type"]=$user_type=$row['user_type'];
 
 }
 if ($user_type!='Admin')

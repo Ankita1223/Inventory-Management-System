@@ -1,6 +1,6 @@
 <?php
 include_once("./database/db.php");
-
+$user_type=$_SESSION["user_type"];
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +21,8 @@ include_once("./database/db.php");
 	<?php include_once("./header.php"); ?>
 	<br/><br/>
 	<div class="container">
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
 		<table class="table table-hover table-bordered">
 		    <thead class="thead-light">
 		      <tr>
@@ -29,7 +31,8 @@ include_once("./database/db.php");
 		        <th>Brand</th>
 		        <th>Serial No.</th>
 		        <th>Status</th>
-		        <th>Action</th>
+
+		        <th ng-if="$user_type!='Engineer' ">Action</th>
 		      </tr>
 		    </thead>
 		    <tbody id="get_inventory">
@@ -45,6 +48,17 @@ include_once("./database/db.php");
 		    </tbody>
 		  </table>
 	</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#get_inventory tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 
 	

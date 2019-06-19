@@ -18,9 +18,9 @@ $user_id = '';
 $user_type='';
 foreach($result as $row)
 {
-	$name = $row['name'];
+	$_SESSION["name"]=$name = $row['name'];
 	$email = $row['email_id'];
-	$user_type=$row['user_type'];
+	$_SESSION["user_type"]=$user_type=$row['user_type'];
 
 }
 if ($user_type!='Employee')
@@ -78,9 +78,16 @@ if ($user_type!='Employee')
 						    </div>
 						
 						    <br>
-					        <br>
-					        <br>
-						
+
+							<div class="card">
+						      <div class="card-body">
+						        <h4 class="card-title">Add Inventories</h4>
+						        <p class="card-text">Here you can add inventories</p>
+						        <a href="#" data-toggle="modal" data-target="#form_inventory" class="btn btn-primary">Add Inventories</a>
+						      </div>
+						    
+						</div>
+						    <br>
 							<div class="card">
 						      <div class="card-body">
 						        <h4 class="card-title">View Inventories</h4>
@@ -94,7 +101,10 @@ if ($user_type!='Employee')
 		</div>
 	</div>
 	
-
+ <?php
+	//Categpry Form
+	include_once("./add_inventories.php");
+  ?>
 	
 	
 

@@ -239,6 +239,7 @@ $(document).ready(function(){
 		if ((pass1.val() == pass2.val()) && status1 == true && status2== true && status3== true && status4==true) {
 			//$(".overlay").show();
 			$.ajax({
+				
 				url : DOMAIN+"/process.php",
 				method : "POST",
 				data : $("#employee_form").serialize(),

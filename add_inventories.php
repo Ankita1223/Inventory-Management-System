@@ -30,6 +30,7 @@
                   <option value="">Choose Status</option>
                   <option value="Already Occupied">Already Occupied</option>
                   <option value="Available">Available</option>
+                  <option value="Available">Obsolete</option>
                   
             </select>
             

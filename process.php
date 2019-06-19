@@ -25,7 +25,8 @@ if (isset($_POST["inventory_type"]) AND isset($_POST["brand"])) {
 	$obj = new DBOperation();
 	$result = $obj->addInventory($_POST["inventory_type"],
 							$_POST["brand"],
-							$_POST["serial_no"],$_POST["status"]);
+							$_POST["serial_no"],$_POST["status"],$_SESSION["name"],$_SESSION["user_type"],$_SESSION["user_id"]);
+
 	echo $result;
 	exit();
 }
@@ -52,9 +53,10 @@ if (isset($_POST["manageInventory"])) {
 			        <td><?php echo $row["brand"]; ?></td>
 			        <td><?php echo $row["serial_no"]; ?></td>
 			        <td><?php echo $row["status"]; ?></td>
-			  
+			        if($_SESSION["user_type"]=="Engineer"){ exit();}
 			        <td>
-			        	<a href="#" did="<?php echo $row['serial_no']; ?>" class="btn btn-danger btn-sm del_cat">Delete</a>
+                    
+			        	<a href="#" did1="<?php echo $row['user_id']; ?>" class="btn btn-danger btn-sm del_cat1">Obsolete</a>
 			        	<a href="#" eid="<?php echo $row['serial_no']; ?>" data-toggle="modal" data-target="#form_category" class="btn btn-info btn-sm edit_cat">Edit</a>
 			        </td>
 			      </tr>
@@ -64,6 +66,7 @@ if (isset($_POST["manageInventory"])) {
 		
 		exit();
 	}
+
 if (isset($_POST["manageEmployee"])) {
 	$m = new Manage();
 	$result = $m->manageRecords("users");
