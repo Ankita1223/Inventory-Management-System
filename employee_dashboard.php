@@ -19,7 +19,7 @@ $user_type='';
 foreach($result as $row)
 {
 	$_SESSION["name"]=$name = $row['name'];
-	$email = $row['email_id'];
+	$_SESSION["email_id"]=$email = $row['email_id'];
 	$_SESSION["user_type"]=$user_type=$row['user_type'];
 
 }
@@ -73,7 +73,7 @@ if ($user_type!='Employee')
 						      <div class="card-body">
 						        <h4 class="card-title">Approval Request</h4>
 						        <p class="card-text">Here you view various approval requests</p>
-						        <a href="#" class="btn btn-primary">See Requests</a>
+						        <a href="./all_request.php" class="btn btn-primary">See Requests</a>
 						     </div>
 						    </div>
 						

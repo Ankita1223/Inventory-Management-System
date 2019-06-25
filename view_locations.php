@@ -1,6 +1,6 @@
 <?php
 include_once("./database/db.php");
-
+//$user_type=$_SESSION["user_type"];
 
 ?>
 <!DOCTYPE html>
@@ -27,15 +27,16 @@ include_once("./database/db.php");
 		    <thead class="thead-light">
 		      <tr>
 		        
-		        <th>Inventory type</th>
-		        <th>Brand</th>
-		        <th>Serial No.</th>
-		        <th>Status</th>
-		        <th >Action</th>
+		        <th>Location Id</th>
+		        <th>Name</th>
+		        <th>Address</th>
+		        <th>Phone No</th>
+		       
 
+		        
 		      </tr>
 		    </thead>
-		    <tbody id="get_inventory">
+		    <tbody id="get_locations">
 		      <!--<tr>
 		        <td>1</td>
 		        <td>Electronics</td>
@@ -53,7 +54,7 @@ include_once("./database/db.php");
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#get_inventory tr").filter(function() {
+    $("#get_locations tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });

@@ -54,11 +54,25 @@ if (isset($_POST["manageInventory"])) {
 			        <td><?php echo $row["serial_no"]; ?></td>
 			        <td><?php echo $row["status"]; ?></td>
 			        if($_SESSION["user_type"]=="Engineer"){ exit();}
+			        <?php if($_SESSION["user_type"]!='Engineer')
+                    {
+                    ?>
 			        <td>
                     
+
+
 			        	<a href="#" did1="<?php echo $row['user_id']; ?>" class="btn btn-danger btn-sm del_cat1">Obsolete</a>
 			        	<a href="#" eid="<?php echo $row['serial_no']; ?>" data-toggle="modal" data-target="#form_category" class="btn btn-info btn-sm edit_cat">Edit</a>
 			        </td>
+			      <?php
+			    }
+			    else
+			    {
+			    ?>
+                       <td>  </td>
+                 <?php
+			    }
+			    ?>
 			      </tr>
 			<?php
 			
@@ -93,6 +107,163 @@ if (isset($_POST["manageEmployee"])) {
 		exit();
 	}
 
+if (isset($_POST["manageLocation"])) {
+	$m = new Manage();
+	$result = $m->manageRecords("locations");
+	$rows = $result["rows"];
+
+	
+		foreach ($rows as $row) {
+			?>
+				<tr>
+			        <td><?php echo $row["location_id"]; ?></td>
+			        <td><?php echo $row["loc_name"]; ?></td>
+			        <td><?php echo $row["Address"]; ?></td>
+			        <td><?php echo $row["phone_no"]; ?></td>
+			        
+			  
+			        
+			     </tr>
+			<?php
+			
+		}
+		
+		exit();
+	}
+
+
+if (isset($_POST["getRequest"])) {
+	$m = new Manage();
+	$result = $m->manageRecords("requests");
+	$rows = $result["rows"];
+
+	
+		foreach ($rows as $row) {
+			?>
+				<tr>
+					
+			        <td><?php echo $row["serial_no"]; ?></td>
+                    
+			        <td><?php  
+                      if($row["status"]=="Pending"){ 
+                      	?>
+                      	<span style="color: blue">Waiting for approval</span>
+                      <?php
+                      }
+                      if ($row["status"]=="Approved"){   
+                      ?>
+                        <span style="color: green">Approved</span>
+                     <?php
+                     }
+                     if ($row["status"]=="Not Approved") { ?>
+                        <span style="color: red">Not Approved</span>
+                      <?php 
+                     }
+                       ?>
+			         </td>
+			        <td><?php echo $row["date_requested"]; ?></td>
+			        <td><?php echo $row["requested_by"]; ?></td>
+			        <td><a href="view_details.php?serial_no=<?php echo $row["serial_no"];?>"  class="btn btn-primary btn-sm ">VIEW DETAILS</a>
+			  
+			        
+			     </tr>
+			<?php
+			
+		}
+		
+		exit();
+	}
+    
+    if (isset($_POST["getApprovedRequest"])) {
+	$m = new Manage();
+	$result = $m->getRecords("requests","Approved");
+	$rows = $result["rows"];
+
+	
+		foreach ($rows as $row) {
+			?>
+				<tr>
+					
+			        <td><?php echo $row["serial_no"]; ?></td>
+                    
+			        <td>
+                        <span style="color: green">Approved</span>
+                     
+			        </td>
+			        <td><?php echo $row["date_requested"]; ?></td>
+			        <td><?php echo $row["requested_by"]; ?></td>
+			        <td><a href="view_details.php?serial_no=<?php echo $row["serial_no"];?>"  class="btn btn-primary btn-sm ">VIEW DETAILS</a>  
+			     </tr>
+			<?php
+			
+		}
+		
+		exit();
+	}
+	if (isset($_POST["getPendingRequest"])) {
+	$m = new Manage();
+	$result = $m->getRecords("requests","Pending");
+	$rows = $result["rows"];
+
+	
+		foreach ($rows as $row) {
+			?>
+				<tr>
+					
+			        <td><?php echo $row["serial_no"]; ?></td>
+                    
+			        <td>
+                        <span style="color:blue">Waiting for Approval</span>
+                     
+			        </td>
+			        <td><?php echo $row["date_requested"]; ?></td>
+			        <td><?php echo $row["requested_by"]; ?></td>
+			        <td><a href="view_details.php?serial_no=<?php echo $row["serial_no"];?>"  class="btn btn-primary btn-sm ">VIEW DETAILS</a>  
+			     </tr>
+			<?php
+			
+		}
+		
+		exit();
+	}
+
+	if (isset($_POST["NotApprovedRequest"])) {
+	$m = new Manage();
+	$result = $m->getRecords("requests","Not Approved");
+	$rows = $result["rows"];
+
+	
+		foreach ($rows as $row) {
+			?>
+				<tr>
+					
+			        <td><?php echo $row["serial_no"]; ?></td>
+                    
+			        <td>
+                        <span style="color: red">Not Approved</span>
+                     
+			        </td>
+			        <td><?php echo $row["date_requested"]; ?></td>
+			        <td><?php echo $row["requested_by"]; ?></td>
+			        <td><a href="view_details.php?serial_no=<?php echo $row["serial_no"];?>"  class="btn btn-primary btn-sm ">VIEW DETAILS</a>  
+			     </tr>
+			<?php
+			
+		}
+		
+		exit();
+	}
+
+
+
+
+
+if (isset($_POST["serialno"]) AND isset($_POST["locationid"]) AND isset($_POST["bool"])) {
+	$m = new Manage();
+	$result = $m->insertRequests($_POST["serialno"],$_POST["locationid"],$_POST["bool"],$_POST["datepicker"]);
+	echo $result;
+	exit();
+}
 
 if (isset($_POST["deleteInventory"])) {
 	$m = new Manage();
@@ -100,5 +271,8 @@ if (isset($_POST["deleteInventory"])) {
 	echo $result;
 }
 
+
+
+
 ?>
-?>
+ 

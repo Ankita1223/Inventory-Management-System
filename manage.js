@@ -25,8 +25,78 @@ $(document).ready(function(){
 			}
 		})
 	}
+    
+    manageLocations();
+	function manageLocations(){
+		$.ajax({
+			url : DOMAIN+"/process.php",
+			method : "POST",
+			data : {manageLocation:1},
+			success : function(data){
+				$("#get_locations").html(data);
+						
+			}
+		})
+	}
+    
+    getRequests();
+	function getRequests(){
+		$.ajax({
+			url : DOMAIN+"/process.php",
+			method : "POST",
+			data : {getRequest:1},
+			success : function(data){
+				$("#get_requests").html(data);
+						
+			}
+		})
+	}
+
+	getApprovedRequests();
+	function getApprovedRequests(){
+		$.ajax({
+			url : DOMAIN+"/process.php",
+			method : "POST",
+			data : {getApprovedRequest:1},
+			success : function(data){
+				$("#approved_request").html(data);
+						
+			}
+		})
+	}
+
+	getPendingRequests();
+	function getPendingRequests(){
+		$.ajax({
+			url : DOMAIN+"/process.php",
+			method : "POST",
+			data : {getPendingRequest:1},
+			success : function(data){
+				$("#pending_request").html(data);
+						
+			}
+		})
+	}
+    
+    getNotApprovedRequests();
+	function getNotApprovedRequests(){
+		$.ajax({
+			url : DOMAIN+"/process.php",
+			method : "POST",
+			data : {NotApprovedRequest:1},
+			success : function(data){
+				$("#not_approved_request").html(data);
+						
+			}
+		})
+	}
 
 
+    
+
+
+    
+   
 	$("body").delegate(".del_cat","click",function(){
 		var did = $(this).attr("did");
 		if (confirm("Are you sure ? You want to delete..!")) {
@@ -52,6 +122,8 @@ $(document).ready(function(){
 
 		}
 	})
+
+
 
 })
 

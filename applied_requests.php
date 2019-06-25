@@ -1,8 +1,3 @@
-<?php
-include_once("./database/db.php");
-
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,45 +18,36 @@ include_once("./database/db.php");
 	<div class="container">
 		<input class="form-control" id="myInput" type="text" placeholder="Search..">
         <br>
-		<table class="table table-hover table-bordered">
-		    <thead class="thead-light">
-		      <tr>
-		        
-		        <th>Inventory type</th>
-		        <th>Brand</th>
-		        <th>Serial No.</th>
-		        <th>Status</th>
-		        <th >Action</th>
+<div class="table-responsive">
 
-		      </tr>
-		    </thead>
-		    <tbody id="get_inventory">
-		      <!--<tr>
-		        <td>1</td>
-		        <td>Electronics</td>
-		        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
-		        <td>
-		        	<a href="#" class="btn btn-danger btn-sm">Delete</a>
-		        	<a href="#" class="btn btn-info btn-sm">Edit</a>
-		        </td>
-		      </tr>-->
-		    </tbody>
-		  </table>
-	</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Serial No</th>
+      <th scope="col">Status</th>
+      <th scope="col">Date Requested</th>
+      <th scope="col">Person Requested</th>
+      <th scope="col">    </th>
+    </tr>
+  </thead>
+  <tbody id ="get_requests">
+    
+
+  </tbody>
+</table>
+
+</div>
+</div>
 
 <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#get_inventory tr").filter(function() {
+    $("#get_requests tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
 });
 </script>
-
-
-	
-	
 </body>
-</html>
+</html>	

@@ -18,15 +18,16 @@ $user_id = '';
 $user_type='';
 foreach($result as $row)
 {
-	$name = $row['name'];
-	$email = $row['email_id'];
-	$user_type=$row['user_type'];
+	$_SESSION["user_name"]=$name = $row['name'];
+	$_SESSION["email_id"]=$email = $row['email_id'];
+	$_SESSION["user_type"]=$user_type=$row['user_type'];
 
 }
 if ($user_type!='Engineer')
 {
 	exit("You are not an engineer");
 }
+ 
 
 ?>
 
@@ -74,7 +75,7 @@ if ($user_type!='Engineer')
 						      <div class="card-body">
 						        <h4 class="card-title">View Inventories</h4>
 						        <p class="card-text">Here you view various inventories and their status</p>
-						        <a href="view_inventories.php" class="btn btn-primary">View Inventories</a>
+						        <a href="./view_inventories.php" class="btn btn-primary">View Inventories</a>
 						     </div>
 						    </div>
 						
@@ -86,7 +87,7 @@ if ($user_type!='Engineer')
 						      <div class="card-body">
 						        <h4 class="card-title">Request for Sending</h4>
 						        <p class="card-text">Here you can request for approval</p>
-						        <a href="#" class="btn btn-primary">Request</a>
+						        <a href="request_for_approval.php" class="btn btn-primary">Request</a>
 						     </div>
 						    </div>
 				</div>	

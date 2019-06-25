@@ -267,10 +267,47 @@ $(document).ready(function(){
 			$("#p2_error").html("<span class='text-danger'>Password is not matched</span>");
 			status = true;
 		}
-	})
+
 
 
 
 
 })
 
+//Request for approval
+$("#request_for_approval").on("submit",function(){
+		       
+			$.ajax({
+				url : DOMAIN+"/process.php",
+				method : "POST",
+				data : $("#request_for_approval").serialize(),
+				success : function(data){
+					if(data == "SOME_ERROR"){
+                           alert("There is some error");
+					}
+					else if (data=="Success!")
+					{
+						alert("Request Saved Successfully..!");
+						$("#serialno").val("");
+						$("#locationid").val("");
+						$("#bool").val("");
+						$("#datepicker").val("");
+						
+					
+					}	
+					else
+					{
+                       
+					}
+
+					
+						
+			
+						
+				}
+			})
+		
+	})
+
+	
+})

@@ -30,7 +30,7 @@ $user_type='';
 foreach($result as $row)
 {
 	$_SESSION["name"]=$name = $row['name'];
-	$email = $row['email_id'];
+	$_SESSION["email_id"]=$email = $row['email_id'];
 	$_SESSION["user_type"]=$user_type=$row['user_type'];
 
 }
@@ -69,7 +69,7 @@ if ($user_type!='Admin')
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $name; ?></p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $user_type; ?></p>
 				    <p class="card-text"><i class="fa fa-envelope">&nbsp;</i><?php echo $email; ?></p>
-				    <a href="#" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
+				    <a href="./edit_profile.php" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 				  </div>
 				</div>
 				</div>	
