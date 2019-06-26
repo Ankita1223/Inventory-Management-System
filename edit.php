@@ -3,6 +3,8 @@
 //edit_profile.php
 
 include_once('./database/db.php');
+$db = new Database();
+$con = $db->connect();
 
 if(isset($_POST['user_name']))
 {
@@ -25,7 +27,7 @@ if(isset($_POST['user_name']))
 			WHERE user_id = '".$_SESSION["user_id"]."'
 		";
 	}
-	$statement = $connect->prepare($query);
+	$statement = $con->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();
 	if(isset($result))

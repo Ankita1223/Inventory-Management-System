@@ -58,8 +58,23 @@ form {
   <hr>
   <div class="form-group">
     <label for="serialno">Serial Number</label>
+    <?php 
+    if (isset($_GET["serial_no"]))
+    {
+
+    ?>
+        <input id="serialno" class="form-control" name="serialno" value="<?php echo $_GET['serial_no'];?>">
+    <?php
+    }
+    else{
+
+    ?>
+
     <select class="form-control" id="serialno" name="serialno">
-    <option value="">Choose Serial Number</option>
+    <option value=''>
+      
+            <?php echo "Choose Serial Number"; ?>
+    </option>
     <?php
     foreach ($rows as $row) {
     ?>
@@ -68,12 +83,17 @@ form {
     } 
     ?> 
     </select>
-
+  <?php 
+}
+?>
   </div>
   <div class="form-group">
     <label for="locationid">Location Id</label>
     <select class="form-control" id="locationid" name="locationid">
-      <option value="">Choose Location Id</option>
+      <option value="">
+      
+      Choose Location Id</option>
+      
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -107,7 +127,7 @@ form {
   </div>
   <div class="form-group">
     <label for="date_of_return">Enter date of return(if returnable)</label>
-    <input id="datepicker" name="datepicker">
+    <input id="datepicker" class="form-control" name="datepicker">
     
     <script>
         $('#datepicker').datepicker({
@@ -115,8 +135,12 @@ form {
             showOtherMonths: true
         });
     </script>
-  
   </div>
+  <div class="form-group">
+    <label for="justification">Justification</label>
+    <textarea class="form-control" id="justification" name="justification" rows="3"></textarea>
+  </div>
+  
 
   <button type="submit" class="btn btn-primary">Submit</button>
 

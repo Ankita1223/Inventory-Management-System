@@ -292,7 +292,7 @@ $("#request_for_approval").on("submit",function(){
 						$("#locationid").val("");
 						$("#bool").val("");
 						$("#datepicker").val("");
-						
+						$("#justification").val("");
 					
 					}	
 					else

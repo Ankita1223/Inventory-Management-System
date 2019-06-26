@@ -69,7 +69,7 @@ class Manage
 			
 
 	}*/
-	public function insertRequests($serialno,$locationid,$bool,$date){
+	public function insertRequests($serialno,$locationid,$bool,$date,$justification){
 	
 	
 		date_default_timezone_set("Asia/Kolkata");
@@ -80,14 +80,14 @@ class Manage
 		$status="Pending";
 		//$approved_by="N.A";
 		//$date_approved="";
-		$sql = "INSERT INTO `requests`(`serial_no`, `requested_by`, `date_requested`, `location_going`,`Returnable`,`date_of_return`,`status`)
-			 VALUES (?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO `requests`(`serial_no`, `requested_by`, `date_requested`, `location_going`,`Returnable`,`date_of_return`,`status`,`justification`)
+			 VALUES (?,?,?,?,?,?,?,?)";
 		
        
 		
 		$pre_stmt = $this->con->prepare($sql);
 		//$pre_stmt = $this->con->query($sql) or die($this->con->error);
-		$pre_stmt->bind_param("sssssss",$serialno,$reqby,$datereq,$locationid,$bool,$date,$status);
+		$pre_stmt->bind_param("ssssssss",$serialno,$reqby,$datereq,$locationid,$bool,$date,$status,$justification);
 		$result=$pre_stmt->execute() or die($this->con->error);
 		//$result=$pre_stmt->get_result();
 			if ($result) {

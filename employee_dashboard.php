@@ -58,7 +58,7 @@ if ($user_type!='Employee')
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $name; ?></p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $user_type; ?></p>
 				    <p class="card-text"><i class="fa fa-envelope">&nbsp;</i><?php echo $email; ?></p>
-				    <a href="#" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
+				    <a href="./edit_profile.php" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 				  </div>
 				</div>
 				</div>	
@@ -92,7 +92,7 @@ if ($user_type!='Employee')
 						      <div class="card-body">
 						        <h4 class="card-title">View Inventories</h4>
 						        <p class="card-text">Here you view different inventories and their status</p>
-						        <a href="view_inventories.php" class="btn btn-primary">View Employees</a>
+						        <a href="view_inventories.php" class="btn btn-primary">View Inventories</a>
 						     </div>
 						    </div>
 				</div>	

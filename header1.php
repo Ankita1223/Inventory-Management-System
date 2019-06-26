@@ -34,7 +34,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Request for approval <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="./request_for_approval.php">Request for approval </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./applied_requests.php">Applied Requests</a>

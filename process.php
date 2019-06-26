@@ -61,7 +61,7 @@ if (isset($_POST["manageInventory"])) {
                     
 
 
-			        	<a href="#" did1="<?php echo $row['user_id']; ?>" class="btn btn-danger btn-sm del_cat1">Obsolete</a>
+			        
 			        	<a href="#" eid="<?php echo $row['serial_no']; ?>" data-toggle="modal" data-target="#form_category" class="btn btn-info btn-sm edit_cat">Edit</a>
 			        </td>
 			      <?php
@@ -69,7 +69,7 @@ if (isset($_POST["manageInventory"])) {
 			    else
 			    {
 			    ?>
-                       <td>  </td>
+                       <td> <a href="request_for_approval.php?serial_no=<?php echo $row["serial_no"];?>" class="btn btn-primary btn-sm ">Request </a>  </td>
                  <?php
 			    }
 			    ?>
@@ -260,7 +260,7 @@ if (isset($_POST["getRequest"])) {
 
 if (isset($_POST["serialno"]) AND isset($_POST["locationid"]) AND isset($_POST["bool"])) {
 	$m = new Manage();
-	$result = $m->insertRequests($_POST["serialno"],$_POST["locationid"],$_POST["bool"],$_POST["datepicker"]);
+	$result = $m->insertRequests($_POST["serialno"],$_POST["locationid"],$_POST["bool"],$_POST["datepicker"],$_POST["justification"]);
 	echo $result;
 	exit();
 }

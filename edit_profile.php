@@ -39,11 +39,6 @@ foreach($result as $row)
 	$_SESSION["user_type"]=$user_type=$row['user_type'];
 
 }
-if ($user_type!='Admin')
-{
-	exit("You are not an Admin");
-}
-
 
 
 include_once('./header.php');
@@ -61,7 +56,54 @@ include_once('./header.php');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 	
+ 	<script>
+$(document).ready(function(){
+	
+	//alert("Ankita");
+	$('#edit_profile_form').on('submit', function(){
+		status=true;
+		if($('#user_new_password').val() != '')
+		{   
+
+			if($('#user_new_password').val() != $('#user_re_enter_password').val())
+			{
+				$('#p_error').html("<span class='text-danger'>Password Not Match</span>");
+				alert("Password Not Match")
+				status=false;  
+				return false;//write this statement otherwise page will be refreshed automatically and Password Not Match will disappear from p_error
+			}
+			else
+			{   
+				status=true;
+				$('#p_error').html('');
+			}
+		}
+		//$('#edit_prfile').attr('disabled', 'disabled');
+		if (status)//don't write (status==true),write(status)
+		{
+
+	    //alert("Ankita")
+		//var form_data = 
+		//$('#user_re_enter_password').attr('required',false);
+		$.ajax({
+			url:"http://localhost/inventory_management_system/edit.php",
+			method:"POST",
+			data:$("#edit_profile_form").serialize(),
+			success:function(data)
+			{
+				//$('#edit_prfile').attr('disabled', false);
+				alert("Profile Edited Successfully!");
+				$('#user_new_password').val('');
+				$('#user_re_enter_password').val('');
+				$('#message').html(data);
+
+			}
+		})
+	  }
+	  
+	})
+})
+</script>
  </head>
  <body>
  	   <br>
@@ -73,66 +115,32 @@ include_once('./header.php');
 					<span id="message"></span>
 					<div class="form-group">
 						<label>Name</label>
-						<input type="text" name="user_name" id="user_name" class="form-control" value="<?php echo $_SESSION["name"]; ?>" required />
+						<input type="text" name="user_name" id="user_name" class="form-control" value="<?php echo $_SESSION["name"]; ?>" >
 					</div>
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" name="user_email" id="user_email" class="form-control" required value="<?php echo $_SESSION["email_id"]; ?>" />
+						<input type="email" name="user_email" id="user_email" class="form-control" value="<?php echo $_SESSION["email_id"]; ?>" >
 					</div>
 					<hr />
 					<label>Leave Password blank if you do not want to change</label>
 					<div class="form-group">
 						<label>New Password</label>
-						<input type="password" name="user_new_password" id="user_new_password" class="form-control" />
+						<input type="password" name="user_new_password" id="user_new_password" class="form-control" >
 					</div>
 					<div class="form-group">
 						<label>Re-enter Password</label>
-						<input type="password" name="user_re_enter_password" id="user_re_enter_password" class="form-control" />
-						<span id="error_password"></span>	
+						<input type="password" name="user_re_enter_password" id="user_re_enter_password" class="form-control" >
+						<small id="p_error"  class="form-text text-muted"></small>	
 					</div>
 					<div class="form-group">
-						 <a href="#" class="btn btn-primary" type="submit" name="submit">Edit</a>
+						 <button class="btn btn-primary" type="submit" name="submit">Edit</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 
-<script>
-$(document).ready(function(){
-	$('#edit_profile_form').on('submit', function(){
-		
-		if($('#user_new_password').val() != '')
-		{
-			if($('#user_new_password').val() != $('#user_re_enter_password').val())
-			{
-				$('#error_password').html('<label class="text-danger">Password Not Match</label>');
-				return false;
-			}
-			else
-			{
-				$('#error_password').html('');
-			}
-		}
-		//$('#edit_prfile').attr('disabled', 'disabled');
-		var form_data = $(this).serialize();
-		//$('#user_re_enter_password').attr('required',false);
-		$.ajax({
-			url:"http://localhost/inventory_management_system/edit.php",
-			method:"POST",
-			data:form_data,
-			success:function(data)
-			{
-				//$('#edit_prfile').attr('disabled', false);
-				$('#user_new_password').val('');
-				$('#user_re_enter_password').val('');
-				$('#message').html(data);
 
-			}
-		})
-	})
-})
-</script>
 </body>
 </html>
 			

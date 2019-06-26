@@ -23,7 +23,8 @@ $name='';
 $loc_name='';
 $Address='';
 $type='';
-
+$justification='';
+$remarks='';
 foreach($result as $row)
 {
 	$requested_by = $row['requested_by'];
@@ -34,7 +35,8 @@ foreach($result as $row)
     $Returnable=$row['Returnable'];
     $return_date=$row['date_of_return'];
     $status=$row['status'];
-
+    $justification=$row['justification'];
+    $remarks=$row['remarks'];
 }
 
 $serialno=$_GET['serial_no'];
@@ -100,11 +102,12 @@ if(isset($_POST['approved']))
   $dateapp = date("Y-m-d H:i:s");
     //echo $datereq;
   $approved_by=$_SESSION["user_id"];
+  $remarks=$_POST["remarks"];
   //$comment=$_POST['comment'];
   //$id=$_POST['id'];
   //echo "Ankita";
  // $serial_no=$__GET["serial_no"];
-   $query="UPDATE `requests` set `status`='".$stat."' ,`date_approved`='".$dateapp."',`approved_by`='".$approved_by."' WHERE `serial_no`='".$serialno."'";
+   $query="UPDATE `requests` set `status`='".$stat."' ,`date_approved`='".$dateapp."',`approved_by`='".$approved_by."',`remarks`='".$remarks."' WHERE `serial_no`='".$serialno."'";
   //echo "HI";
   $statement = $con->prepare($query);
     $result=$statement->execute();
@@ -127,11 +130,12 @@ if(isset($_POST['approved']))
 if(isset($_POST['rejected']))
 {
   $stat= "Not Approved";
+  $remarks=$_POST["remarks"];
   //$comment=$_POST['comment'];
   //$id=$_POST['id'];
   
   //$query="UPDATE `applied_leave` set `status`='$status', `comment`='$comment' where `id`='$id'";
-   $query="UPDATE `requests` set `status`='".$stat."' WHERE `serial_no`='".$serialno."'";
+   $query="UPDATE `requests` set `status`='".$stat."' ,`remarks`='".$remarks."' WHERE `serial_no`='".$serialno."'";
   //echo "HI";
   $statement = $con->prepare($query);
     $result=$statement->execute();
@@ -170,8 +174,15 @@ if(isset($_POST['rejected']))
   		<li class="list-group-item"><div class="row"><div class="col-md-4"><pre><b>Approved_by:</b><?php echo $name ?></pre></div><div class="col-md-4"><pre><b>Date Approved:</b><?php echo $date_approved ?></pre></div><div class="col-md-4"><pre><b>User Id Approved:</b><?php echo $approved_by ?></pre></div></div></li>
   		<li class="list-group-item"><div class="row"><div class="col-md-4"><pre><b>Location Id:</b><?php echo $location_id ?></pre></div><div class="col-md-4"><pre><b>Location Name:</b><?php echo $loc_name ?></pre></div><div class="col-md-4"><pre><b>Address:</b><?php echo $Address ?></pre></div></div></li>
   		<li class="list-group-item"><div class="row"><div class="col-md-6"><pre><b>Returnable:</b><?php echo $Returnable ?></pre></div><div class="col-md-6"><pre><b>Date of Return:</b><?php echo $return_date ?></pre></div></div></li>
-  		
-
+  		<li class="list-group-item"><div class="row"><div class="col-md-6"><pre><b>Justification:</b><?php echo $justification ?></pre></div>
+      <?php 
+      if($status!='Pending')
+      {
+       ?>
+        <div class="col-md-6"><pre><b>Remarks:</b><?php echo $remarks ?></pre></div></div></li>
+      <?php
+      }                         
+       ?>
 	</ul>
 
 	<?php
@@ -179,17 +190,24 @@ if(isset($_POST['rejected']))
     {
      ?>
 
-<form method="post" action="" >
+       <div class="row"><div class="col-md-6">
+        <br>
+        <br>
+      <form method="post" action="" >
+
   		<button type="submit" class="btn btn-primary"  name="approved" >Approve</button>
-  		<button  type="submit" class="btn btn-primary"  name="rejected">Reject</button>
-</form>
-  		
+  		<button  type="submit" class="btn btn-primary"  name="rejected">Reject</button></div>
+
+  		<div class="col-md-6"><label for="remarks"><b>Remarks:</b></label><textarea class="form-control" name="remarks" rows="3"></textarea></div>
+     </form>
+
   	<?php
   	}
   	?>
 
 
   </div>
+  
 </div>
 </div>
 </body>
