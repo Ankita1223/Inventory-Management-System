@@ -10,11 +10,10 @@ include_once("./database/db.php");
 $db = new Database();
 $con = $db->connect();
 $userid ='';
-if (isset($_SESSION['user_id']))
-{    
+  
 
-     $userid =$_SESSION['user_id'];
-}
+ $userid =$_GET['id'];
+
 //echo $userid;
  	$query = "
 	SELECT * FROM `users`
@@ -34,9 +33,9 @@ $email = '';
 $user_type='';
 foreach($result as $row)
 {
-	$_SESSION["name"]=$name = $row['name'];
-	$_SESSION["email_id"]=$email = $row['email_id'];
-	$_SESSION["user_type"]=$user_type=$row['user_type'];
+	$name = $row['name'];
+	$email = $row['email_id'];
+	$user_type=$row['user_type'];
 
 }
 
@@ -96,6 +95,8 @@ $(document).ready(function(){
 				$('#user_new_password').val('');
 				$('#user_re_enter_password').val('');
 				$('#message').html(data);
+				
+
 
 			}
 		})
@@ -115,11 +116,11 @@ $(document).ready(function(){
 					<span id="message"></span>
 					<div class="form-group">
 						<label>Name</label>
-						<input type="text" name="user_name" id="user_name" class="form-control" value="<?php echo $_SESSION["name"]; ?>" >
+						<input type="text" name="user_name" id="user_name" class="form-control" value="<?php echo $name; ?>" >
 					</div>
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" name="user_email" id="user_email" class="form-control" value="<?php echo $_SESSION["email_id"]; ?>" >
+						<input type="email" name="user_email" id="user_email" class="form-control" value="<?php echo $email; ?>" >
 					</div>
 					<hr />
 					<label>Leave Password blank if you do not want to change</label>

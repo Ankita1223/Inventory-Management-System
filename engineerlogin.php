@@ -43,7 +43,7 @@ include_once("./database/constants.php");
 			</form>
 		    
 		  </div>
-		  <div class="card-footer"><a href="#">Forget Password ?</a></div>
+		  <div class="card-footer"><a href="./set_new_pass.php">Forgot Password?Set New Password</a></div>
 		</div>
 	</div>
 

@@ -8,6 +8,11 @@ $query = "
 SELECT * FROM users 
 WHERE user_id = '".$_SESSION['user_id']."'
 ";
+if (isset($_SESSION['user_id']))
+{    
+
+     $userid =$_SESSION['user_id'];
+}
 $statement = $con->prepare($query);
 $statement->execute();
 $result = $statement->get_result();
@@ -58,7 +63,7 @@ if ($user_type!='Employee')
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $name; ?></p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $user_type; ?></p>
 				    <p class="card-text"><i class="fa fa-envelope">&nbsp;</i><?php echo $email; ?></p>
-				    <a href="./edit_profile.php" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
+				    <a href="./edit_profile.php?id=<?php echo $userid ;?>" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 				  </div>
 				</div>
 				</div>	

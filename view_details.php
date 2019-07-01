@@ -97,6 +97,7 @@ $name=$row['name'];
 
 if(isset($_POST['approved']))
 {
+  
   $stat="Approved";
   date_default_timezone_set("Asia/Kolkata");
   $dateapp = date("Y-m-d H:i:s");
@@ -124,6 +125,7 @@ if(isset($_POST['approved']))
   $statement = $con->prepare($query);
   $result=$statement->execute();
    //header("location:http:view_details.php");
+  header("refresh:0");
 
 
 }
@@ -148,6 +150,7 @@ if(isset($_POST['rejected']))
     echo "Data not Updated, please try again!";
   }
    //header("location:http://localhost/inventory_management_system/view_details.php");
+  header("refresh:0");
 }
 
 
@@ -189,16 +192,27 @@ if(isset($_POST['rejected']))
   	if(($_SESSION["user_type"]!="Engineer") AND($status=='Pending') )
     {
      ?>
+      <button type="submit" class="btn btn-primary"  name="takeaction" data-toggle="modal" data-target="#form_action">TAKE ACTION</button>
+   <form method="post" action="" >
+  <div class="modal" tabindex="-1" role="dialog" id="form_action">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Take Action Here</h5>
+      </div>
+      <div class="modal-body">
 
-       <div class="row"><div class="col-md-6">
-        <br>
-        <br>
-      <form method="post" action="" >
-
+      
+      <label for="remarks"><b>Remarks:</b></label><textarea class="form-control" name="remarks" id="remarks" rows="3"></textarea>
+    </div>
+     <div class="modal-footer">
   		<button type="submit" class="btn btn-primary"  name="approved" >Approve</button>
-  		<button  type="submit" class="btn btn-primary"  name="rejected">Reject</button></div>
-
-  		<div class="col-md-6"><label for="remarks"><b>Remarks:</b></label><textarea class="form-control" name="remarks" rows="3"></textarea></div>
+  		<button  type="submit" class="btn btn-primary"  name="rejected" >Reject</button>
+     </div>
+    </div>
+  </div>
+</div>
+  		
      </form>
 
   	<?php

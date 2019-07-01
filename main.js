@@ -252,6 +252,7 @@ $(document).ready(function(){
 					}else{
 						//$(".overlay").hide();window.location.href = encodeURI(DOMAIN+"/index.php?msg=You are registered Now you can login");
 						alert("New Employee Added Successfully..!");
+						
 						$("#employee_name").val("");
 						$("#email").val("");
 						$("#password1").val("");

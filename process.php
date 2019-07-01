@@ -58,11 +58,11 @@ if (isset($_POST["manageInventory"])) {
                     {
                     ?>
 			        <td>
-                    
+                     <form action='' method="post">
 
-
+                     <a href="#" data-toggle="modal" data-target="#form_inventory" class="btn btn-info btn-sm edit_cat1" name="Edit">Edit</a>
 			        
-			        	<a href="#" eid="<?php echo $row['serial_no']; ?>" data-toggle="modal" data-target="#form_category" class="btn btn-info btn-sm edit_cat">Edit</a>
+			        </form>	
 			        </td>
 			      <?php
 			    }
@@ -96,8 +96,10 @@ if (isset($_POST["manageEmployee"])) {
 			        <td><?php echo $row["email_id"]; ?></td>
 			  
 			        <td>
-			        	<a href="#" did1="<?php echo $row['user_id']; ?>" class="btn btn-danger btn-sm del_cat1">Delete</a>
-			        	<a href="#" eid1="<?php echo $row['user_id']; ?>" data-toggle="modal" data-target="#form_category" class="btn btn-info btn-sm edit_cat1">Edit</a>
+			        <form action='' method="post">
+			        
+			        	<a href="#" data-toggle="modal" data-target="#form_user "class="btn btn-info btn-sm edit_cat1" name="Edit">Edit</a>
+			        </form>
 			        </td>
 			      </tr>
 			<?php
@@ -106,6 +108,22 @@ if (isset($_POST["manageEmployee"])) {
 		
 		exit();
 	}
+
+if (isset($_POST["updateUser"])) {
+	$m = new Manage();
+	$result = $m->getSingleRecord("brands","bid",$_POST["id"]);
+	echo json_encode($result);
+	exit();
+}
+
+//Update Record after getting data
+if (isset($_POST["update_user"])) {
+	$m = new Manage();
+	$id = $_POST["bid"];
+	$name = $_POST["update_brand"];
+	$result = $m->update_record("brands",["bid"=>$id],["brand_name"=>$name,"status"=>1]);
+	echo $result;
+}
 
 if (isset($_POST["manageLocation"])) {
 	$m = new Manage();

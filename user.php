@@ -36,7 +36,34 @@ class User
 			$pre_stmt->bind_param("ssss",$username,$email,$pass_hash,$usertype);
 			$result = $pre_stmt->execute() or die($this->con->error);
 			if ($result) {
-				return $this->con->insert_id;
+				
+		        require('phpmailer/class.phpmailer.php');
+				require('phpmailer/class.smtp.php');
+				require ('phpmailer/PHPMailerAutoload.php');
+	
+				
+		        $message_body = "Your account is created.<br>
+                 Username: ".$username."<br> Usertype:".$usertype." <br>Use this email id:".$email ." for login";
+		         $mail = new PHPMailer();
+		     	 $mail->IsSMTP();
+					//$mail->SMTPDebug = 2;
+				$mail->SMTPAuth = TRUE;
+				$mail->SMTPSecure = 'tls'; // tls or ssl
+				$mail->Port     = 587;
+				$mail->Username = "ankitajain23121997@gmail.com";
+				$mail->Password = "ankita@23";
+				$mail->Host     = "tls://smtp.gmail.com";
+				$mail->Mailer   = "smtp";
+				$mail->SetFrom("ankitajain23121997@gmail.com", "Ankita");
+				$mail->AddAddress($email);
+
+				$mail->Subject = "Your account created";
+				$mail->MsgHTML($message_body);
+				$mail->IsHTML(true);		
+				$result = $mail->Send();
+				
+                
+
 			}else{
 				return "SOME_ERROR";
 			}

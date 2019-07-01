@@ -58,7 +58,10 @@ $(document).ready(function(){
   });
 });
 </script>
-	
+<?php
+include_once("./edit_user.php")	;
+include_once("./add_employees.php")	;
+?>
 	
 </body>
 </html>

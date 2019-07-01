@@ -69,7 +69,7 @@ if ($user_type!='Admin')
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $name; ?></p>
 				    <p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $user_type; ?></p>
 				    <p class="card-text"><i class="fa fa-envelope">&nbsp;</i><?php echo $email; ?></p>
-				    <a href="./edit_profile.php" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
+				    <a href="./edit_profile.php?id=<?php echo $userid ;?>" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 				  </div>
 				</div>
 				</div>	
@@ -134,6 +134,7 @@ if ($user_type!='Admin')
 	//Categpry Form
 	include_once("./add_employees.php");
  ?>	
+ 
 
 </body>
 </html>

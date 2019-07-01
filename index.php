@@ -44,7 +44,12 @@
       <a href="./engineerlogin.php" class="card-text">Engineer</a>
     </div>
   </div>
-
+  <br>
+  <br>
+  <!---
+  <div class="card card-body bg-light">
+     Click <a href='#'>here</a> to Login using OTP and then set New Password</div>
+--->
 </div>
 
 </body>
