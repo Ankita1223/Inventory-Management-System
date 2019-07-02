@@ -50,11 +50,11 @@ class User
 				$mail->SMTPAuth = TRUE;
 				$mail->SMTPSecure = 'tls'; // tls or ssl
 				$mail->Port     = 587;
-				$mail->Username = "ankitajain23121997@gmail.com";
-				$mail->Password = "ankita@23";
+				$mail->Username = "my email id";
+				$mail->Password = "my gmail account password";
 				$mail->Host     = "tls://smtp.gmail.com";
 				$mail->Mailer   = "smtp";
-				$mail->SetFrom("ankitajain23121997@gmail.com", "Ankita");
+				$mail->SetFrom("my email id", "Ankita");
 				$mail->AddAddress($email);
 
 				$mail->Subject = "Your account created";
